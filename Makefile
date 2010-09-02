@@ -6,3 +6,6 @@ all:
 clean:
 	ocamlbuild -clean
 	rm -f $(JS)
+
+github:
+	cp index.html $(JS) ../puzzle.gh-pages
