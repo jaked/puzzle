@@ -14,6 +14,34 @@ end
 
 let console = (Ocamljs.var "console" : console)
 
+class type touch =
+object
+  method _get_clientX : int
+  method _get_clientY : int
+  method identifier : int
+  method _get_pageX : int
+  method _get_pageY : int
+  method _get_screenX : int
+  method _get_screenY : int
+  method _get_target : < .. >
+end
+
+class type touchEvent =
+object
+  inherit Dom.uIEvent
+
+  method _get_changedTouches : touch array
+  method _get_targetTouches : touch array
+  method _get_touches : touch array
+end
+
+let touchEvent name (elem : #Dom.element) =
+  let e, s = F.make_event () in
+  let f = F.send s in
+  elem#addEventListener name f false;
+  F.cleanup (fun () -> elem#removeEventListener name f false);
+  (Obj.magic e : touchEvent F.event)
+
 type piece = {
   id : int;
   w : int;
