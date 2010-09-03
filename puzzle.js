@@ -7649,54 +7649,116 @@ var oc$Puzzle$ =
     var $3E$3E$3D$1034 = F$1031[3];
     var $7C$3E$1035 = _f(function (x$1036, f$1037) { return __(f$1037, [ x$1036 ]); });
     var console$1043 = console;
-    var onload$1057 =
-      _f(function (param$1359) {
-           var canvas$1058 = function () { var v$1385 = D$1030[1]; return _m(v$1385.getElementById, v$1385, [ "canvas" ]); }();
-           var click_canvas$1059 = function () { var v$1384 = D$1030[1]; return _m(v$1384.createElement, v$1384, [ "canvas" ]); }();
-           var xy_of_drag$1060 =
-             _f(function (e$1061, init$1062) {
+    var navigator$1049 = navigator;
+    var touchEvent$1069 =
+      _f(function (name$1070, elem$1071) {
+           var match$1480 = _(F$1031[19], [ 0 ]);
+           var f$1074 = _(F$1031[25], [ match$1480[1] ]);
+           _m(elem$1071.addEventListener, elem$1071, [ name$1070, f$1074, false ]);
+           _(F$1031[52],
+             [ _f(function (param$1479) { return __m(elem$1071.removeEventListener, elem$1071, [ name$1070, f$1074, false ]); }) ]);
+           return match$1480[0];
+         });
+    var onload$1088 =
+      _f(function (param$1436) {
+           var iOS$1089 =
+             function () {
+               var ua$1090 = navigator$1049.userAgent;
+               return _m(ua$1090.indexOf, ua$1090, [ "iPhone" ]) !== -1 ||
+                        (_m(ua$1090.indexOf, ua$1090, [ "iPod" ]) !== -1 || _m(ua$1090.indexOf, ua$1090, [ "iPad" ]) !== -1);
+             }();
+           var canvas$1091 = function () { var v$1483 = D$1030[1]; return _m(v$1483.getElementById, v$1483, [ "canvas" ]); }();
+           var click_canvas$1092 = function () { var v$1482 = D$1030[1]; return _m(v$1482.createElement, v$1482, [ "canvas" ]); }();
+           var clicked_shape$1093 =
+             _f(function (e$1094) {
+                  var x$1095 = e$1094.clientX - canvas$1091.offsetLeft;
+                  var y$1096 = e$1094.clientY - canvas$1091.offsetTop;
+                  var id$1097 =
+                    function () {
+                      var v$1481 = _m(click_canvas$1092.getContext, click_canvas$1092, [ "2d" ]);
+                      return _m(v$1481.getImageData, v$1481, [ x$1095, y$1096, 1., 1. ]);
+                    }();
+                  var d$1098 = id$1097.data;
+                  return oc$$arefs(d$1098, 0);
+                });
+           var xy_of_drag$1099 =
+             _f(function (e$1100, init$1101) {
                   return __($7C$3E$1035,
                             [
                               _($7C$3E$1035,
                                 [
                                   _($7C$3E$1035,
                                     [
-                                      e$1061,
+                                      e$1100,
                                       _(F$1031[33],
                                         [
-                                          _f(function (e$1063) {
-                                               var match$1380 = e$1063.type;
-                                               var $r31 = false;
-                                               r$31: {
+                                          _f(function (param$1465) {
+                                               var $r43 = false;
+                                               r$43: {
                                                  {
-                                                   if (oc$$sneq(match$1380, "mousedown")) { { $r31 = true; break r$31; } }
-                                                   if (!!e$1063.shiftKey) { { $r31 = true; break r$31; } }
+                                                   if (typeof param$1465 == 'number') { { $r43 = true; break r$43; } }
+                                                   var variant$1476 = param$1465[0];
+                                                   if (!(variant$1476 !== -518001565)) {
+                                                     {
+                                                       var e$1103 = param$1465[1];
+                                                       if (!(e$1103.touches.length === 1)) { { $r43 = true; break r$43; } }
+                                                       var t$1110 = oc$$arefs(e$1103.touches, 0);
+                                                       return __($7C$3E$1035,
+                                                                 [
+                                                                   _($7C$3E$1035,
+                                                                    [
+                                                                    _(touchEvent$1069, [ "touchmove", canvas$1091 ]),
+                                                                    _
+                                                                    (F$1031[36],
+                                                                    [
+                                                                    _f
+                                                                    (function 
+                                                                    (param$1471, e$1113) {
+                                                                    var match$1472 = param$1471[0];
+                                                                    var t$1114 = oc$$arefs(e$1113.touches, 0);
+                                                                    var x$27$1115 = t$1114.clientX;
+                                                                    var y$27$1116 = t$1114.clientY;
+                                                                    return $
+                                                                    ($(x$27$1115, y$27$1116),
+                                                                    $(x$27$1115 - match$1472[0], y$27$1116 - match$1472[1]));
+                                                                    }),
+                                                                    $($(t$1110.clientX, t$1110.clientY), $(0, 0))
+                                                                    ])
+                                                                    ]),
+                                                                   _(F$1031[33],
+                                                                    [ _f(function (param$1474) { return param$1474[1]; }) ])
+                                                                 ]);
+                                                     }
+                                                   }
+                                                   if (variant$1476 !== 633103591) { { $r43 = true; break r$43; } }
+                                                   var e$1102 = param$1465[1];
+                                                   if (!!e$1102.shiftKey) { { $r43 = true; break r$43; } }
                                                    return __($7C$3E$1035,
                                                              [
                                                                _($7C$3E$1035,
                                                                  [
-                                                                   _(Fd$1032[30], [ "mousemove", canvas$1058 ]),
+                                                                   _(Fd$1032[30], [ "mousemove", canvas$1091 ]),
                                                                    _(F$1031[36],
                                                                     [
                                                                     _f
                                                                     (function 
-                                                                    (param$1375, e$1066) {
-                                                                    var match$1376 = param$1375[0];
-                                                                    var x$27$1067 = e$1066.clientX;
-                                                                    var y$27$1068 = e$1066.clientY;
+                                                                    (param$1466, e$1106) {
+                                                                    var match$1467 = param$1466[0];
+                                                                    var x$27$1107 = e$1106.clientX;
+                                                                    var y$27$1108 = e$1106.clientY;
                                                                     return $
-                                                                    ($(x$27$1067, y$27$1068),
-                                                                    $(x$27$1067 - match$1376[0], y$27$1068 - match$1376[1]));
+                                                                    ($(x$27$1107, y$27$1108),
+                                                                    $(x$27$1107 - match$1467[0], y$27$1108 - match$1467[1]));
                                                                     }),
-                                                                    $($(e$1063.clientX, e$1063.clientY), $(0, 0))
+                                                                    $($(e$1102.clientX, e$1102.clientY), $(0, 0))
                                                                     ])
                                                                  ]),
                                                                _(F$1031[33],
-                                                                 [ _f(function (param$1378) { return param$1378[1]; }) ])
+                                                                 [ _f(function (param$1469) { return param$1469[1]; }) ])
                                                              ]);
                                                  }
                                                }
-                                               if ($r31) return F$1031[20];
+                                               if ($r43) return F$1031[20];
                                              })
                                         ])
                                     ]),
@@ -7704,119 +7766,159 @@ var oc$Puzzle$ =
                                 ]),
                               _(F$1031[37],
                                 [
-                                  _f(function (param$1381, param$1382) {
-                                       return $(param$1381[0] + param$1382[0], param$1381[1] + param$1382[1]);
+                                  _f(function (param$1477, param$1478) {
+                                       return $(param$1477[0] + param$1478[0], param$1477[1] + param$1478[1]);
                                      }),
-                                  init$1062
+                                  init$1101
                                 ])
                             ]);
                 });
-           var size$1074 = _(Fd$1032[9], [ 0 ]);
+           var size$1122 = _(Fd$1032[9], [ 0 ]);
            _(F$1031[14],
              [
                0,
-               size$1074,
-               _f(function (param$1374) {
-                    var w$1077 = param$1374[0] - 2 * canvas$1058.offsetLeft;
-                    var h$1078 = param$1374[1] - 2 * canvas$1058.offsetTop;
-                    canvas$1058.width = w$1077;
-                    canvas$1058.height = h$1078;
-                    click_canvas$1059.width = w$1077;
-                    return click_canvas$1059.height = h$1078;
+               size$1122,
+               _f(function (param$1464) {
+                    var w$1125 = param$1464[0] - 2 * canvas$1091.offsetLeft;
+                    var h$1126 = param$1464[1] - 2 * canvas$1091.offsetTop;
+                    canvas$1091.width = w$1125;
+                    canvas$1091.height = h$1126;
+                    click_canvas$1092.width = w$1125;
+                    return click_canvas$1092.height = h$1126;
                   })
              ]);
-           var num_shapes$1079 = 25;
-           var shape_events$1080 =
-             _(oc$Array$[0], [ num_shapes$1079 + 1, _f(function (param$1373) { return __(F$1031[19], [ 0 ]); }) ]);
-           var mouse_events$1081 =
-             _(F$1031[32],
-               [
-                 _(oc$List$[10],
-                   [
-                     _f(function (t$1082) { return __(Fd$1032[30], [ t$1082, canvas$1058 ]); }),
-                     $("mousedown", $("mouseup", $("mouseout", 0)))
-                   ])
-               ]);
-           var last$1083 = $(0);
+           var num_shapes$1127 = 25;
+           var shape_events$1128 =
+             _(oc$Array$[0], [ num_shapes$1127 + 1, _f(function (param$1463) { return __(F$1031[19], [ 0 ]); }) ]);
+           var all_events$1129 =
+             function () {
+               var events$1130 =
+                 $(_(F$1031[33],
+                     [ _f(function (e$1131) { return $(633103591, e$1131); }), _(Fd$1032[30], [ "mousedown", canvas$1091 ]) ]),
+                   $(_(F$1031[33],
+                       [ _f(function (e$1132) { return $(230963104, e$1132); }), _(Fd$1032[30], [ "mouseup", canvas$1091 ]) ]),
+                     $(_(F$1031[33],
+                         [ _f(function (e$1133) { return $(-35132503, e$1133); }), _(Fd$1032[30], [ "mouseout", canvas$1091 ]) ]),
+                       0)));
+               var events$1134 =
+                 iOS$1089 ?
+                   _(oc$Pervasives$[21],
+                     [
+                       events$1130,
+                       $(_(F$1031[33],
+                           [
+                             _f(function (e$1135) { return $(-518001565, e$1135); }),
+                             _(touchEvent$1069, [ "touchstart", canvas$1091 ])
+                           ]),
+                         $(_(F$1031[33],
+                             [
+                               _f(function (e$1136) { return $(-640431716, e$1136); }),
+                               _(touchEvent$1069, [ "touchend", canvas$1091 ])
+                             ]), 0))
+                     ]) :
+                   events$1130;
+               return _(F$1031[32], [ events$1134 ]);
+             }();
+           var last$1137 = $(0);
            _(F$1031[21],
              [
-               mouse_events$1081,
-               _f(function (e$1084) {
-                    var match$1372 = e$1084.type;
-                    if (oc$$sneq(match$1372, "mousedown")) {
+               all_events$1129,
+               _f(function (we$1138) {
+                    var variant$1462 = we$1138[0];
+                    if (!(variant$1462 !== -518001565)) {
                       {
-                        var match$1370 = oc$$arefs(shape_events$1080, last$1083[0]);
-                        _(F$1031[25], [ match$1370[1], e$1084 ]);
-                        return last$1083[0] = 0;
+                        var e$1140 = we$1138[1];
+                        if (e$1140.touches.length === 1) {
+                          {
+                            var t$1143 = oc$$arefs(e$1140.touches, 0);
+                            var i$1144 = _(clicked_shape$1093, [ t$1143 ]);
+                            var match$1453 = oc$$arefs(shape_events$1128, i$1144);
+                            _(F$1031[25], [ match$1453[1], we$1138 ]);
+                            return last$1137[0] = i$1144;
+                          }
+                        }
+                        var match$1455 = oc$$arefs(shape_events$1128, last$1137[0]);
+                        return __(F$1031[25], [ match$1455[1], we$1138 ]);
                       }
                     }
-                    var i$1085 =
-                      function () {
-                        var x$1086 = e$1084.clientX - canvas$1058.offsetLeft;
-                        var y$1087 = e$1084.clientY - canvas$1058.offsetTop;
-                        var id$1088 =
-                          function () {
-                            var v$1383 = _m(click_canvas$1059.getContext, click_canvas$1059, [ "2d" ]);
-                            return _m(v$1383.getImageData, v$1383, [ x$1086, y$1087, 1., 1. ]);
-                          }();
-                        var d$1089 = id$1088.data;
-                        return oc$$arefs(d$1089, 0);
-                      }();
-                    var match$1368 = oc$$arefs(shape_events$1080, i$1085);
-                    _(F$1031[25], [ match$1368[1], e$1084 ]);
-                    return last$1083[0] = i$1085;
+                    if (variant$1462 >= 633103591) {
+                      {
+                        var i$1141 = _(clicked_shape$1093, [ we$1138[1] ]);
+                        var match$1451 = oc$$arefs(shape_events$1128, i$1141);
+                        _(F$1031[25], [ match$1451[1], we$1138 ]);
+                        return last$1137[0] = i$1141;
+                      }
+                    }
+                    var match$1457 = oc$$arefs(shape_events$1128, last$1137[0]);
+                    _(F$1031[25], [ match$1457[1], we$1138 ]);
+                    return last$1137[0] = 0;
                   })
              ]);
-           var shapes$1092 =
+           var shapes$1148 =
              _(oc$Array$[0],
                [
-                 num_shapes$1079,
-                 _f(function (i$1093) {
-                      var match$1366 = oc$$arefs(shape_events$1080, i$1093 + 1);
-                      var e$1094 = match$1366[0];
-                      var angle$1095 =
+                 num_shapes$1127,
+                 _f(function (i$1149) {
+                      var match$1449 = oc$$arefs(shape_events$1128, i$1149 + 1);
+                      var e$1150 = match$1449[0];
+                      var xy$1151 = _(xy_of_drag$1099, [ e$1150, $(_(oc$Random$[4], [ 1024 ]), _(oc$Random$[4], [ 512 ])) ]);
+                      var angle$1152 =
                         _($7C$3E$1035,
                           [
                             _($7C$3E$1035,
                               [
                                 _($7C$3E$1035,
                                   [
-                                    e$1094,
+                                    e$1150,
                                     _(F$1031[33],
                                       [
-                                        _f(function (e$1096) {
-                                             var match$1365 = e$1096.type;
-                                             var $r9 = false;
-                                             r$9: {
+                                        _f(function (param$1442) {
+                                             var $r13 = false;
+                                             r$13: {
                                                {
-                                                 if (oc$$sneq(match$1365, "mousedown")) { { $r9 = true; break r$9; } }
-                                                 if (!e$1096.shiftKey) { { $r9 = true; break r$9; } }
-                                                 var x$1097 = e$1096.clientX;
-                                                 var y$1098 = e$1096.clientY;
+                                                 if (typeof param$1442 == 'number') { { $r13 = true; break r$13; } }
+                                                 if (param$1442[0] !== 633103591) { { $r13 = true; break r$13; } }
+                                                 var e$1153 = param$1442[1];
+                                                 if (!e$1153.shiftKey) { { $r13 = true; break r$13; } }
+                                                 var match$1447 = _(F$1031[6], [ xy$1151 ]);
+                                                 var cy$1155 = match$1447[1];
+                                                 var cx$1154 = match$1447[0];
+                                                 var x$1156 = e$1153.clientX;
+                                                 var y$1157 = e$1153.clientY;
+                                                 var a$1158 = Math.atan2(x$1156 - cx$1154, y$1157 - cy$1155);
                                                  return __($7C$3E$1035,
                                                            [
-                                                             _(Fd$1032[30], [ "mousemove", canvas$1058 ]),
-                                                             _(F$1031[33],
+                                                             _($7C$3E$1035,
                                                                [
-                                                                 _f(function 
-                                                                    (e$1099) {
-                                                                    var x$27$1100 = e$1099.clientX;
-                                                                    var y$27$1101 = e$1099.clientY;
-                                                                    return Math.atan2(x$27$1100 - x$1097, y$27$1101 - y$1098);
-                                                                    })
-                                                               ])
+                                                                 _(Fd$1032[30], [ "mousemove", canvas$1091 ]),
+                                                                 _(F$1031[36],
+                                                                   [
+                                                                    _f
+                                                                    (function 
+                                                                    (param$1443, e$1160) {
+                                                                    var td$1159 = param$1443[0];
+                                                                    var x$1161 = e$1160.clientX;
+                                                                    var y$1162 = e$1160.clientY;
+                                                                    var a$1163 = Math.atan2(x$1161 - cx$1154, y$1162 - cy$1155);
+                                                                    var d$1164 = a$1163 - td$1159;
+                                                                    return $(td$1159 + d$1164, d$1164);
+                                                                    }),
+                                                                    $(a$1158, 0.)
+                                                                   ])
+                                                               ]),
+                                                             _(F$1031[33], [ _f(function (param$1445) { return param$1445[1]; }) ])
                                                            ]);
                                                }
                                              }
-                                             if ($r9) return F$1031[20];
+                                             if ($r13) return F$1031[20];
                                            })
                                       ])
                                   ]),
                                 F$1031[38]
                               ]),
-                            _(F$1031[43], [ 0, 0. ])
+                            _(F$1031[37], [ _f(function (a$1166, d$1167) { return a$1166 + d$1167; }), 0. ])
                           ]);
-                      return $(i$1093 + 1, _(oc$Random$[4], [ 128 ]), 
+                      return $(i$1149 + 1, _(oc$Random$[4], [ 128 ]), 
                                _(oc$Random$[4], [ 128 ]),
                                _(Fda$1033[0],
                                  [
@@ -7824,89 +7926,85 @@ var oc$Puzzle$ =
                                    _(oc$Random$[4], [ 256 ]),
                                    _(oc$Random$[4], [ 256 ]),
                                    _(oc$Random$[4], [ 256 ])
-                                 ]), _(xy_of_drag$1060, [ e$1094, $(_(oc$Random$[4], [ 1024 ]), _(oc$Random$[4], [ 512 ])) ]),
-                               angle$1095);
+                                 ]), xy$1151, angle$1152);
                     })
                ]);
-           var xy$1102 =
+           var xy$1168 =
              function () {
-               var match$1362 = oc$$arefs(shape_events$1080, 0);
-               return _(xy_of_drag$1060, [ match$1362[0], $(0, 0) ]);
+               var match$1439 = oc$$arefs(shape_events$1128, 0);
+               return _(xy_of_drag$1099, [ match$1439[0], $(0, 0) ]);
              }();
-           var shapes$1104 =
-             _f(function (color$1105) {
+           var shapes$1170 =
+             _f(function (color$1171) {
                   return __(F$1031[2],
                             [
                               0,
-                              xy$1102,
-                              _f(function (param$1360) {
-                                   var py$1107 = param$1360[1];
-                                   var px$1106 = param$1360[0];
+                              xy$1168,
+                              _f(function (param$1437) {
+                                   var py$1173 = param$1437[1];
+                                   var px$1172 = param$1437[0];
                                    return __(F$1031[74],
                                              [
                                                0,
                                                _(oc$List$[10],
                                                  [
-                                                   _f(function (s$1108) {
+                                                   _f(function (s$1174) {
                                                         return __(F$1031[56],
                                                                   [
                                                                     0,
-                                                                    s$1108[4],
-                                                                    s$1108[5],
+                                                                    s$1174[4],
+                                                                    s$1174[5],
                                                                     _f
                                                                     (function 
-                                                                    (param$1361, a$1111) {
-                                                                    var y$1110 = param$1361[1];
-                                                                    var x$1109 = param$1361[0];
+                                                                    (param$1438, a$1177) {
+                                                                    var y$1176 = param$1438[1];
+                                                                    var x$1175 = param$1438[0];
                                                                     return __
                                                                     (F$1031[0],
                                                                     [
                                                                     _f
                                                                     (function 
-                                                                    (ctx$1112) {
+                                                                    (ctx$1178) {
                                                                     _m
-                                                                    (ctx$1112.translate, ctx$1112,
-                                                                    [
-                                                                    px$1106 + x$1109 + (s$1108[1] / 2 >> 0),
-                                                                    py$1107 + y$1110 + (s$1108[2] / 2 >> 0)
-                                                                    ]);
-                                                                    _m(ctx$1112.rotate, ctx$1112, [ -a$1111 ]);
+                                                                    (ctx$1178.translate, ctx$1178,
+                                                                    [ px$1172 + x$1175, py$1173 + y$1176 ]);
+                                                                    _m(ctx$1178.rotate, ctx$1178, [ -a$1177 ]);
                                                                     _m
-                                                                    (ctx$1112.translate, ctx$1112,
-                                                                    [
-                                                                    -px$1106 - x$1109 - (s$1108[1] / 2 >> 0),
-                                                                    -py$1107 - y$1110 - (s$1108[2] / 2 >> 0)
-                                                                    ]);
+                                                                    (ctx$1178.translate, ctx$1178,
+                                                                    [ -px$1172 - x$1175, -py$1173 - y$1176 ]);
                                                                     return __
                                                                     (Fda$1033[1],
                                                                     [
-                                                                    $(px$1106 + x$1109, py$1107 + y$1110),
-                                                                    s$1108[1],
-                                                                    s$1108[2],
-                                                                    _(color$1105, [ s$1108 ]),
-                                                                    ctx$1112
+                                                                    $
+                                                                    (px$1172 + x$1175 - (s$1174[1] / 2 >> 0),
+                                                                    py$1173 + y$1176 - (s$1174[2] / 2 >> 0)),
+                                                                    s$1174[1],
+                                                                    s$1174[2],
+                                                                    _(color$1171, [ s$1174 ]),
+                                                                    ctx$1178
                                                                     ]);
                                                                     })
                                                                     ]);
                                                                     })
                                                                   ]);
                                                       }),
-                                                   _(oc$Array$[9], [ shapes$1092 ])
+                                                   _(oc$Array$[9], [ shapes$1148 ])
                                                  ]),
                                                F$1031[0]
                                              ]);
                                  })
                             ]);
                 });
-           _(Fda$1033[5], [ canvas$1058, _(shapes$1104, [ _f(function (s$1113) { return s$1113[3]; }) ]) ]);
+           _(Fda$1033[5], [ canvas$1091, _(shapes$1170, [ _f(function (s$1179) { return s$1179[3]; }) ]) ]);
            return __(Fda$1033[5],
                      [
-                       click_canvas$1059,
-                       _(shapes$1104, [ _f(function (s$1114) { return __(Fda$1033[0], [ 0, s$1114[0], 0, 0 ]); }) ])
+                       click_canvas$1092,
+                       _(shapes$1170, [ _f(function (s$1180) { return __(Fda$1033[0], [ 0, s$1180[0], 0, 0 ]); }) ])
                      ]);
          });
-    (D$1030[0]).onload = onload$1057;
-    return $(D$1030, F$1031, Fd$1032, Fda$1033, $3E$3E$3D$1034, $7C$3E$1035, console$1043, onload$1057);
+    (D$1030[0]).onload = onload$1088;
+    return $(D$1030, F$1031, Fd$1032, Fda$1033, $3E$3E$3D$1034, $7C$3E$1035, console$1043, navigator$1049, touchEvent$1069,
+             onload$1088);
   }();
 var oc$Std_exit$ = (_(oc$Pervasives$[80], [ 0 ]), $());
 return caml_named_value;
