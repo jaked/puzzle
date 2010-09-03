@@ -14,6 +14,13 @@ end
 
 let console = (Ocamljs.var "console" : console)
 
+class type navigator =
+object
+  method _get_userAgent : string
+end
+
+let navigator = (Ocamljs.var "navigator" : navigator)
+
 class type touch =
 object
   method _get_clientX : int
@@ -52,23 +59,44 @@ type piece = {
 }
 
 let onload () =
+  let iOS =
+    let ua = Javascript.js_string_of_string navigator#_get_userAgent in
+    ua#indexOf "iPhone" <> -1 || ua#indexOf "iPod" <> -1 || ua#indexOf "iPad" <> -1 in
+
   let canvas = (D.document#getElementById "canvas" : D.canvas) in
   let click_canvas = (D.document#createElement "canvas" : D.canvas) in
+
+  let clicked_shape e =
+    let x = e#_get_clientX - canvas#_get_offsetLeft in
+    let y = e#_get_clientY - canvas#_get_offsetTop in
+    let id = (click_canvas#getContext "2d")#getImageData (float_of_int x) (float_of_int y) 1. 1. in
+    let d = id#_get_data in
+    d.(0) in
 
   let xy_of_drag e init =
     e |>
     F.map
-      (fun e ->
-         match e#_get_type with
-           | "mousedown" when not e#_get_shiftKey ->
-               Fd.mouseEvent "mousemove" canvas |>
-               F.collect_e
-                 (fun ((x, y), _) e ->
-                    let x' = e#_get_clientX and y' = e#_get_clientY in
-                    ((x', y'), (x' - x, y' - y)))
-                 ((e#_get_clientX, e#_get_clientY), (0, 0)) |>
-               F.map (fun (_, d) -> d)
-           | _ -> F.never) |>
+      (function
+         | `Mousedown e when not e#_get_shiftKey ->
+             Fd.mouseEvent "mousemove" canvas |>
+             F.collect_e
+               (fun ((x, y), _) e ->
+                  let x' = e#_get_clientX and y' = e#_get_clientY in
+                  ((x', y'), (x' - x, y' - y)))
+               ((e#_get_clientX, e#_get_clientY), (0, 0)) |>
+             F.map (fun (_, d) -> d)
+         | `Touchstart e when Array.length e#_get_touches = 1 ->
+             let t = e#_get_touches.(0) in
+             touchEvent "touchmove" canvas |>
+             F.collect_e
+               (fun ((x, y), _) e ->
+                  e#preventDefault;
+                  let t = e#_get_touches.(0) in
+                  let x' = t#_get_clientX and y' = t#_get_clientY in
+                  ((x', y'), (x' - x, y' - y)))
+               ((t#_get_clientX, t#_get_clientY), (0, 0)) |>
+             F.map (fun (_, d) -> d)
+         | _ -> F.never) |>
     F.join_e |>
     F.collect_b (fun (x, y) (dx, dy) -> x + dx, y + dy) init in
 
@@ -87,29 +115,43 @@ let onload () =
   (* shape 0 is the background *)
   let shape_events = Array.init (num_shapes + 1) (fun _ -> F.make_event ()) in
 
-  let mouse_events =
-    F.merge
-      (List.map
-         (fun t -> Fd.mouseEvent t canvas)
-         [ "mousedown"; "mouseup"; "mouseout" ]) in
+  let all_events =
+    let events = [
+      F.map (fun e -> `Mousedown e) (Fd.mouseEvent "mousedown" canvas);
+      F.map (fun e -> `Mouseup e) (Fd.mouseEvent "mouseup" canvas);
+      F.map (fun e -> `Mouseout e) (Fd.mouseEvent "mouseout" canvas);
+    ] in
+    let events =
+      if iOS
+      then
+        events @ [
+          F.map (fun e -> e#preventDefault; `Touchstart e) (touchEvent "touchstart" canvas);
+          F.map (fun e -> e#preventDefault; `Touchend e) (touchEvent "touchend" canvas);
+        ]
+      else events in
+    F.merge events in
 
   (* dispatch mousedowns to the right shape. this is rather imperative. *)
   let last = ref 0 in
-  F.notify_e mouse_events begin fun e ->
-    match e#_get_type with
-      | "mousedown" ->
-          let i =
-            let x = e#_get_clientX - canvas#_get_offsetLeft in
-            let y = e#_get_clientY - canvas#_get_offsetTop in
-            let id = (click_canvas#getContext "2d")#getImageData (float_of_int x) (float_of_int y) 1. 1. in
-            let d = id#_get_data in
-            d.(0) in
+  F.notify_e all_events begin fun we ->
+    match we with
+      | `Mousedown e ->
+          let i = clicked_shape e in
           let (_, s) = shape_events.(i) in
-          F.send s e;
+          F.send s we;
           last := i
-      | _ ->
+      | `Touchstart e when Array.length e#_get_touches = 1 ->
+          let t = e#_get_touches.(0) in
+          let i = clicked_shape t in
+          let (_, s) = shape_events.(i) in
+          F.send s we;
+          last := i
+      | `Touchstart _ ->
           let (_, s) = shape_events.(!last) in
-          F.send s e;
+          F.send s we
+      | `Mouseup _ | `Mouseout _ | `Touchend _ ->
+          let (_, s) = shape_events.(!last) in
+          F.send s we;
           last := 0
   end;
 
@@ -124,22 +166,40 @@ let onload () =
          let angle =
            e |>
            F.map
-             (fun e ->
-                match e#_get_type with
-                  | "mousedown" when e#_get_shiftKey ->
-                      let (cx, cy) = F.sample xy in
-                      let x = e#_get_clientX and y = e#_get_clientY in
-                      let a = atan2 (float_of_int (x - cx)) (float_of_int (y - cy)) in
-                      Fd.mouseEvent "mousemove" canvas |>
-                      F.collect_e
-                        (fun (td, _) e ->
-                           let x = e#_get_clientX and y = e#_get_clientY in
-                           let a = atan2 (float_of_int (x - cx)) (float_of_int (y - cy)) in
-                           let d = a -. td in
-                           (td +. d, d))
-                        (a, 0.) |>
-                      F.map (fun (_, d) -> d)
-                  | _ -> F.never) |>
+             (function
+                | `Mousedown e when e#_get_shiftKey ->
+                    let (cx, cy) = F.sample xy in
+                    let x = e#_get_clientX and y = e#_get_clientY in
+                    let a = atan2 (float_of_int (x - cx)) (float_of_int (y - cy)) in
+                    Fd.mouseEvent "mousemove" canvas |>
+                    F.collect_e
+                      (fun (td, _) e ->
+                         let x = e#_get_clientX and y = e#_get_clientY in
+                         let a = atan2 (float_of_int (x - cx)) (float_of_int (y - cy)) in
+                         let d = a -. td in
+                         (td +. d, d))
+                      (a, 0.) |>
+                    F.map (fun (_, d) -> d)
+                | `Touchstart e when Array.length e#_get_touches = 2 ->
+                    let t1 = e#_get_touches.(0) in
+                    let t2 = e#_get_touches.(1) in
+                    let x1 = t1#_get_clientX and y1 = t1#_get_clientY in
+                    let x2 = t2#_get_clientX and y2 = t2#_get_clientY in
+                    let a = atan2 (float_of_int (x2 - x1)) (float_of_int (y2 - y1)) in
+                    touchEvent "touchmove" canvas |>
+                    F.collect_e
+                      (fun (td, _) e ->
+                         e#preventDefault;
+                         let t1 = e#_get_touches.(0) in
+                         let t2 = e#_get_touches.(1) in
+                         let x1 = t1#_get_clientX and y1 = t1#_get_clientY in
+                         let x2 = t2#_get_clientX and y2 = t2#_get_clientY in
+                         let a = atan2 (float_of_int (x2 - x1)) (float_of_int (y2 - y1)) in
+                         let d = a -. td in
+                         (td +. d, d))
+                      (a, 0.) |>
+                    F.map (fun (_, d) -> d)
+                | _ -> F.never) |>
            F.join_e |>
            F.collect_b (fun a d -> a +. d) 0. in
 
