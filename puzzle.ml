@@ -66,6 +66,12 @@ let onload () =
   let canvas = (D.document#getElementById "canvas" : D.canvas) in
   let click_canvas = (D.document#createElement "canvas" : D.canvas) in
 
+  if iOS then begin
+    canvas#addEventListener "touchstart" (fun e -> e#preventDefault) false;
+    canvas#addEventListener "touchend" (fun e -> e#preventDefault) false;
+    canvas#addEventListener "touchmove" (fun e -> e#preventDefault) false;
+  end;
+
   let clicked_shape e =
     let x = e#_get_clientX - canvas#_get_offsetLeft in
     let y = e#_get_clientY - canvas#_get_offsetTop in
@@ -90,7 +96,6 @@ let onload () =
              touchEvent "touchmove" canvas |>
              F.collect_e
                (fun ((x, y), _) e ->
-                  e#preventDefault;
                   let t = e#_get_touches.(0) in
                   let x' = t#_get_clientX and y' = t#_get_clientY in
                   ((x', y'), (x' - x, y' - y)))
@@ -125,8 +130,8 @@ let onload () =
       if iOS
       then
         events @ [
-          F.map (fun e -> e#preventDefault; `Touchstart e) (touchEvent "touchstart" canvas);
-          F.map (fun e -> e#preventDefault; `Touchend e) (touchEvent "touchend" canvas);
+          F.map (fun e -> `Touchstart e) (touchEvent "touchstart" canvas);
+          F.map (fun e -> `Touchend e) (touchEvent "touchend" canvas);
         ]
       else events in
     F.merge events in
@@ -189,7 +194,6 @@ let onload () =
                     touchEvent "touchmove" canvas |>
                     F.collect_e
                       (fun (td, _) e ->
-                         e#preventDefault;
                          let t1 = e#_get_touches.(0) in
                          let t2 = e#_get_touches.(1) in
                          let x1 = t1#_get_clientX and y1 = t1#_get_clientY in
