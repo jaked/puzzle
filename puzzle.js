@@ -7652,31 +7652,31 @@ var oc$Puzzle$ =
     var navigator$1049 = navigator;
     var touchEvent$1069 =
       _f(function (name$1070, elem$1071) {
-           var match$1480 = _(F$1031[19], [ 0 ]);
-           var f$1074 = _(F$1031[25], [ match$1480[1] ]);
+           var match$1503 = _(F$1031[19], [ 0 ]);
+           var f$1074 = _(F$1031[25], [ match$1503[1] ]);
            _m(elem$1071.addEventListener, elem$1071, [ name$1070, f$1074, false ]);
            _(F$1031[52],
-             [ _f(function (param$1479) { return __m(elem$1071.removeEventListener, elem$1071, [ name$1070, f$1074, false ]); }) ]);
-           return match$1480[0];
+             [ _f(function (param$1502) { return __m(elem$1071.removeEventListener, elem$1071, [ name$1070, f$1074, false ]); }) ]);
+           return match$1503[0];
          });
     var onload$1088 =
-      _f(function (param$1436) {
+      _f(function (param$1455) {
            var iOS$1089 =
              function () {
                var ua$1090 = navigator$1049.userAgent;
                return _m(ua$1090.indexOf, ua$1090, [ "iPhone" ]) !== -1 ||
                         (_m(ua$1090.indexOf, ua$1090, [ "iPod" ]) !== -1 || _m(ua$1090.indexOf, ua$1090, [ "iPad" ]) !== -1);
              }();
-           var canvas$1091 = function () { var v$1483 = D$1030[1]; return _m(v$1483.getElementById, v$1483, [ "canvas" ]); }();
-           var click_canvas$1092 = function () { var v$1482 = D$1030[1]; return _m(v$1482.createElement, v$1482, [ "canvas" ]); }();
+           var canvas$1091 = function () { var v$1506 = D$1030[1]; return _m(v$1506.getElementById, v$1506, [ "canvas" ]); }();
+           var click_canvas$1092 = function () { var v$1505 = D$1030[1]; return _m(v$1505.createElement, v$1505, [ "canvas" ]); }();
            var clicked_shape$1093 =
              _f(function (e$1094) {
                   var x$1095 = e$1094.clientX - canvas$1091.offsetLeft;
                   var y$1096 = e$1094.clientY - canvas$1091.offsetTop;
                   var id$1097 =
                     function () {
-                      var v$1481 = _m(click_canvas$1092.getContext, click_canvas$1092, [ "2d" ]);
-                      return _m(v$1481.getImageData, v$1481, [ x$1095, y$1096, 1., 1. ]);
+                      var v$1504 = _m(click_canvas$1092.getContext, click_canvas$1092, [ "2d" ]);
+                      return _m(v$1504.getImageData, v$1504, [ x$1095, y$1096, 1., 1. ]);
                     }();
                   var d$1098 = id$1097.data;
                   return oc$$arefs(d$1098, 0);
@@ -7692,16 +7692,16 @@ var oc$Puzzle$ =
                                       e$1100,
                                       _(F$1031[33],
                                         [
-                                          _f(function (param$1465) {
-                                               var $r43 = false;
-                                               r$43: {
+                                          _f(function (param$1488) {
+                                               var $r58 = false;
+                                               r$58: {
                                                  {
-                                                   if (typeof param$1465 == 'number') { { $r43 = true; break r$43; } }
-                                                   var variant$1476 = param$1465[0];
-                                                   if (!(variant$1476 !== -518001565)) {
+                                                   if (typeof param$1488 == 'number') { { $r58 = true; break r$58; } }
+                                                   var variant$1499 = param$1488[0];
+                                                   if (!(variant$1499 !== -518001565)) {
                                                      {
-                                                       var e$1103 = param$1465[1];
-                                                       if (!(e$1103.touches.length === 1)) { { $r43 = true; break r$43; } }
+                                                       var e$1103 = param$1488[1];
+                                                       if (!(e$1103.touches.length === 1)) { { $r58 = true; break r$58; } }
                                                        var t$1110 = oc$$arefs(e$1103.touches, 0);
                                                        return __($7C$3E$1035,
                                                                  [
@@ -7713,27 +7713,27 @@ var oc$Puzzle$ =
                                                                     [
                                                                     _f
                                                                     (function 
-                                                                    (param$1471, e$1113) {
-                                                                    var match$1472 = param$1471[0];
+                                                                    (param$1494, e$1113) {
+                                                                    var match$1495 = param$1494[0];
                                                                     _m(e$1113.preventDefault, e$1113, [  ]);
                                                                     var t$1114 = oc$$arefs(e$1113.touches, 0);
                                                                     var x$27$1115 = t$1114.clientX;
                                                                     var y$27$1116 = t$1114.clientY;
                                                                     return $
                                                                     ($(x$27$1115, y$27$1116),
-                                                                    $(x$27$1115 - match$1472[0], y$27$1116 - match$1472[1]));
+                                                                    $(x$27$1115 - match$1495[0], y$27$1116 - match$1495[1]));
                                                                     }),
                                                                     $($(t$1110.clientX, t$1110.clientY), $(0, 0))
                                                                     ])
                                                                     ]),
                                                                    _(F$1031[33],
-                                                                    [ _f(function (param$1474) { return param$1474[1]; }) ])
+                                                                    [ _f(function (param$1497) { return param$1497[1]; }) ])
                                                                  ]);
                                                      }
                                                    }
-                                                   if (variant$1476 !== 633103591) { { $r43 = true; break r$43; } }
-                                                   var e$1102 = param$1465[1];
-                                                   if (!!e$1102.shiftKey) { { $r43 = true; break r$43; } }
+                                                   if (variant$1499 !== 633103591) { { $r58 = true; break r$58; } }
+                                                   var e$1102 = param$1488[1];
+                                                   if (!!e$1102.shiftKey) { { $r58 = true; break r$58; } }
                                                    return __($7C$3E$1035,
                                                              [
                                                                _($7C$3E$1035,
@@ -7743,23 +7743,23 @@ var oc$Puzzle$ =
                                                                     [
                                                                     _f
                                                                     (function 
-                                                                    (param$1466, e$1106) {
-                                                                    var match$1467 = param$1466[0];
+                                                                    (param$1489, e$1106) {
+                                                                    var match$1490 = param$1489[0];
                                                                     var x$27$1107 = e$1106.clientX;
                                                                     var y$27$1108 = e$1106.clientY;
                                                                     return $
                                                                     ($(x$27$1107, y$27$1108),
-                                                                    $(x$27$1107 - match$1467[0], y$27$1108 - match$1467[1]));
+                                                                    $(x$27$1107 - match$1490[0], y$27$1108 - match$1490[1]));
                                                                     }),
                                                                     $($(e$1102.clientX, e$1102.clientY), $(0, 0))
                                                                     ])
                                                                  ]),
                                                                _(F$1031[33],
-                                                                 [ _f(function (param$1469) { return param$1469[1]; }) ])
+                                                                 [ _f(function (param$1492) { return param$1492[1]; }) ])
                                                              ]);
                                                  }
                                                }
-                                               if ($r43) return F$1031[20];
+                                               if ($r58) return F$1031[20];
                                              })
                                         ])
                                     ]),
@@ -7767,8 +7767,8 @@ var oc$Puzzle$ =
                                 ]),
                               _(F$1031[37],
                                 [
-                                  _f(function (param$1477, param$1478) {
-                                       return $(param$1477[0] + param$1478[0], param$1477[1] + param$1478[1]);
+                                  _f(function (param$1500, param$1501) {
+                                       return $(param$1500[0] + param$1501[0], param$1500[1] + param$1501[1]);
                                      }),
                                   init$1101
                                 ])
@@ -7779,9 +7779,9 @@ var oc$Puzzle$ =
              [
                0,
                size$1122,
-               _f(function (param$1464) {
-                    var w$1125 = param$1464[0] - 2 * canvas$1091.offsetLeft;
-                    var h$1126 = param$1464[1] - 2 * canvas$1091.offsetTop;
+               _f(function (param$1487) {
+                    var w$1125 = param$1487[0] - 2 * canvas$1091.offsetLeft;
+                    var h$1126 = param$1487[1] - 2 * canvas$1091.offsetTop;
                     canvas$1091.width = w$1125;
                     canvas$1091.height = h$1126;
                     click_canvas$1092.width = w$1125;
@@ -7790,7 +7790,7 @@ var oc$Puzzle$ =
              ]);
            var num_shapes$1127 = 25;
            var shape_events$1128 =
-             _(oc$Array$[0], [ num_shapes$1127 + 1, _f(function (param$1463) { return __(F$1031[19], [ 0 ]); }) ]);
+             _(oc$Array$[0], [ num_shapes$1127 + 1, _f(function (param$1486) { return __(F$1031[19], [ 0 ]); }) ]);
            var all_events$1129 =
              function () {
                var events$1130 =
@@ -7825,33 +7825,33 @@ var oc$Puzzle$ =
              [
                all_events$1129,
                _f(function (we$1138) {
-                    var variant$1462 = we$1138[0];
-                    if (!(variant$1462 !== -518001565)) {
+                    var variant$1485 = we$1138[0];
+                    if (!(variant$1485 !== -518001565)) {
                       {
                         var e$1140 = we$1138[1];
                         if (e$1140.touches.length === 1) {
                           {
                             var t$1143 = oc$$arefs(e$1140.touches, 0);
                             var i$1144 = _(clicked_shape$1093, [ t$1143 ]);
-                            var match$1453 = oc$$arefs(shape_events$1128, i$1144);
-                            _(F$1031[25], [ match$1453[1], we$1138 ]);
+                            var match$1476 = oc$$arefs(shape_events$1128, i$1144);
+                            _(F$1031[25], [ match$1476[1], we$1138 ]);
                             return last$1137[0] = i$1144;
                           }
                         }
-                        var match$1455 = oc$$arefs(shape_events$1128, last$1137[0]);
-                        return __(F$1031[25], [ match$1455[1], we$1138 ]);
+                        var match$1478 = oc$$arefs(shape_events$1128, last$1137[0]);
+                        return __(F$1031[25], [ match$1478[1], we$1138 ]);
                       }
                     }
-                    if (variant$1462 >= 633103591) {
+                    if (variant$1485 >= 633103591) {
                       {
                         var i$1141 = _(clicked_shape$1093, [ we$1138[1] ]);
-                        var match$1451 = oc$$arefs(shape_events$1128, i$1141);
-                        _(F$1031[25], [ match$1451[1], we$1138 ]);
+                        var match$1474 = oc$$arefs(shape_events$1128, i$1141);
+                        _(F$1031[25], [ match$1474[1], we$1138 ]);
                         return last$1137[0] = i$1141;
                       }
                     }
-                    var match$1457 = oc$$arefs(shape_events$1128, last$1137[0]);
-                    _(F$1031[25], [ match$1457[1], we$1138 ]);
+                    var match$1480 = oc$$arefs(shape_events$1128, last$1137[0]);
+                    _(F$1031[25], [ match$1480[1], we$1138 ]);
                     return last$1137[0] = 0;
                   })
              ]);
@@ -7860,8 +7860,8 @@ var oc$Puzzle$ =
                [
                  num_shapes$1127,
                  _f(function (i$1149) {
-                      var match$1449 = oc$$arefs(shape_events$1128, i$1149 + 1);
-                      var e$1150 = match$1449[0];
+                      var match$1472 = oc$$arefs(shape_events$1128, i$1149 + 1);
+                      var e$1150 = match$1472[0];
                       var xy$1151 = _(xy_of_drag$1099, [ e$1150, $(_(oc$Random$[4], [ 1024 ]), _(oc$Random$[4], [ 512 ])) ]);
                       var angle$1152 =
                         _($7C$3E$1035,
@@ -7873,20 +7873,63 @@ var oc$Puzzle$ =
                                     e$1150,
                                     _(F$1031[33],
                                       [
-                                        _f(function (param$1442) {
-                                             var $r13 = false;
-                                             r$13: {
+                                        _f(function (param$1461) {
+                                             var $r28 = false;
+                                             r$28: {
                                                {
-                                                 if (typeof param$1442 == 'number') { { $r13 = true; break r$13; } }
-                                                 if (param$1442[0] !== 633103591) { { $r13 = true; break r$13; } }
-                                                 var e$1153 = param$1442[1];
-                                                 if (!e$1153.shiftKey) { { $r13 = true; break r$13; } }
-                                                 var match$1447 = _(F$1031[6], [ xy$1151 ]);
-                                                 var cy$1155 = match$1447[1];
-                                                 var cx$1154 = match$1447[0];
-                                                 var x$1156 = e$1153.clientX;
-                                                 var y$1157 = e$1153.clientY;
-                                                 var a$1158 = Math.atan2(x$1156 - cx$1154, y$1157 - cy$1155);
+                                                 if (typeof param$1461 == 'number') { { $r28 = true; break r$28; } }
+                                                 var variant$1471 = param$1461[0];
+                                                 if (!(variant$1471 !== -518001565)) {
+                                                   {
+                                                     var e$1154 = param$1461[1];
+                                                     if (!(e$1154.touches.length === 2)) { { $r28 = true; break r$28; } }
+                                                     var t1$1167 = oc$$arefs(e$1154.touches, 0);
+                                                     var t2$1168 = oc$$arefs(e$1154.touches, 1);
+                                                     var x1$1169 = t1$1167.clientX;
+                                                     var y1$1170 = t1$1167.clientY;
+                                                     var x2$1171 = t2$1168.clientX;
+                                                     var y2$1172 = t2$1168.clientY;
+                                                     var a$1173 = Math.atan2(x2$1171 - x1$1169, y2$1172 - y1$1170);
+                                                     return __($7C$3E$1035,
+                                                               [
+                                                                 _($7C$3E$1035,
+                                                                   [
+                                                                    _(touchEvent$1069, [ "touchmove", canvas$1091 ]),
+                                                                    _
+                                                                    (F$1031[36],
+                                                                    [
+                                                                    _f
+                                                                    (function 
+                                                                    (param$1467, e$1175) {
+                                                                    var td$1174 = param$1467[0];
+                                                                    _m(e$1175.preventDefault, e$1175, [  ]);
+                                                                    var t1$1176 = oc$$arefs(e$1175.touches, 0);
+                                                                    var t2$1177 = oc$$arefs(e$1175.touches, 1);
+                                                                    var x1$1178 = t1$1176.clientX;
+                                                                    var y1$1179 = t1$1176.clientY;
+                                                                    var x2$1180 = t2$1177.clientX;
+                                                                    var y2$1181 = t2$1177.clientY;
+                                                                    var a$1182 = Math.atan2(x2$1180 - x1$1178, y2$1181 - y1$1179);
+                                                                    var d$1183 = a$1182 - td$1174;
+                                                                    return $(td$1174 + d$1183, d$1183);
+                                                                    }),
+                                                                    $(a$1173, 0.)
+                                                                    ])
+                                                                   ]),
+                                                                 _(F$1031[33],
+                                                                   [ _f(function (param$1469) { return param$1469[1]; }) ])
+                                                               ]);
+                                                   }
+                                                 }
+                                                 if (variant$1471 !== 633103591) { { $r28 = true; break r$28; } }
+                                                 var e$1153 = param$1461[1];
+                                                 if (!e$1153.shiftKey) { { $r28 = true; break r$28; } }
+                                                 var match$1466 = _(F$1031[6], [ xy$1151 ]);
+                                                 var cy$1156 = match$1466[1];
+                                                 var cx$1155 = match$1466[0];
+                                                 var x$1157 = e$1153.clientX;
+                                                 var y$1158 = e$1153.clientY;
+                                                 var a$1159 = Math.atan2(x$1157 - cx$1155, y$1158 - cy$1156);
                                                  return __($7C$3E$1035,
                                                            [
                                                              _($7C$3E$1035,
@@ -7896,28 +7939,28 @@ var oc$Puzzle$ =
                                                                    [
                                                                     _f
                                                                     (function 
-                                                                    (param$1443, e$1160) {
-                                                                    var td$1159 = param$1443[0];
-                                                                    var x$1161 = e$1160.clientX;
-                                                                    var y$1162 = e$1160.clientY;
-                                                                    var a$1163 = Math.atan2(x$1161 - cx$1154, y$1162 - cy$1155);
-                                                                    var d$1164 = a$1163 - td$1159;
-                                                                    return $(td$1159 + d$1164, d$1164);
+                                                                    (param$1462, e$1161) {
+                                                                    var td$1160 = param$1462[0];
+                                                                    var x$1162 = e$1161.clientX;
+                                                                    var y$1163 = e$1161.clientY;
+                                                                    var a$1164 = Math.atan2(x$1162 - cx$1155, y$1163 - cy$1156);
+                                                                    var d$1165 = a$1164 - td$1160;
+                                                                    return $(td$1160 + d$1165, d$1165);
                                                                     }),
-                                                                    $(a$1158, 0.)
+                                                                    $(a$1159, 0.)
                                                                    ])
                                                                ]),
-                                                             _(F$1031[33], [ _f(function (param$1445) { return param$1445[1]; }) ])
+                                                             _(F$1031[33], [ _f(function (param$1464) { return param$1464[1]; }) ])
                                                            ]);
                                                }
                                              }
-                                             if ($r13) return F$1031[20];
+                                             if ($r28) return F$1031[20];
                                            })
                                       ])
                                   ]),
                                 F$1031[38]
                               ]),
-                            _(F$1031[37], [ _f(function (a$1166, d$1167) { return a$1166 + d$1167; }), 0. ])
+                            _(F$1031[37], [ _f(function (a$1185, d$1186) { return a$1185 + d$1186; }), 0. ])
                           ]);
                       return $(i$1149 + 1, _(oc$Random$[4], [ 128 ]), 
                                _(oc$Random$[4], [ 128 ]),
@@ -7930,59 +7973,59 @@ var oc$Puzzle$ =
                                  ]), xy$1151, angle$1152);
                     })
                ]);
-           var xy$1168 =
+           var xy$1187 =
              function () {
-               var match$1439 = oc$$arefs(shape_events$1128, 0);
-               return _(xy_of_drag$1099, [ match$1439[0], $(0, 0) ]);
+               var match$1458 = oc$$arefs(shape_events$1128, 0);
+               return _(xy_of_drag$1099, [ match$1458[0], $(0, 0) ]);
              }();
-           var shapes$1170 =
-             _f(function (color$1171) {
+           var shapes$1189 =
+             _f(function (color$1190) {
                   return __(F$1031[2],
                             [
                               0,
-                              xy$1168,
-                              _f(function (param$1437) {
-                                   var py$1173 = param$1437[1];
-                                   var px$1172 = param$1437[0];
+                              xy$1187,
+                              _f(function (param$1456) {
+                                   var py$1192 = param$1456[1];
+                                   var px$1191 = param$1456[0];
                                    return __(F$1031[74],
                                              [
                                                0,
                                                _(oc$List$[10],
                                                  [
-                                                   _f(function (s$1174) {
+                                                   _f(function (s$1193) {
                                                         return __(F$1031[56],
                                                                   [
                                                                     0,
-                                                                    s$1174[4],
-                                                                    s$1174[5],
+                                                                    s$1193[4],
+                                                                    s$1193[5],
                                                                     _f
                                                                     (function 
-                                                                    (param$1438, a$1177) {
-                                                                    var y$1176 = param$1438[1];
-                                                                    var x$1175 = param$1438[0];
+                                                                    (param$1457, a$1196) {
+                                                                    var y$1195 = param$1457[1];
+                                                                    var x$1194 = param$1457[0];
                                                                     return __
                                                                     (F$1031[0],
                                                                     [
                                                                     _f
                                                                     (function 
-                                                                    (ctx$1178) {
+                                                                    (ctx$1197) {
                                                                     _m
-                                                                    (ctx$1178.translate, ctx$1178,
-                                                                    [ px$1172 + x$1175, py$1173 + y$1176 ]);
-                                                                    _m(ctx$1178.rotate, ctx$1178, [ -a$1177 ]);
+                                                                    (ctx$1197.translate, ctx$1197,
+                                                                    [ px$1191 + x$1194, py$1192 + y$1195 ]);
+                                                                    _m(ctx$1197.rotate, ctx$1197, [ -a$1196 ]);
                                                                     _m
-                                                                    (ctx$1178.translate, ctx$1178,
-                                                                    [ -px$1172 - x$1175, -py$1173 - y$1176 ]);
+                                                                    (ctx$1197.translate, ctx$1197,
+                                                                    [ -px$1191 - x$1194, -py$1192 - y$1195 ]);
                                                                     return __
                                                                     (Fda$1033[1],
                                                                     [
                                                                     $
-                                                                    (px$1172 + x$1175 - (s$1174[1] / 2 >> 0),
-                                                                    py$1173 + y$1176 - (s$1174[2] / 2 >> 0)),
-                                                                    s$1174[1],
-                                                                    s$1174[2],
-                                                                    _(color$1171, [ s$1174 ]),
-                                                                    ctx$1178
+                                                                    (px$1191 + x$1194 - (s$1193[1] / 2 >> 0),
+                                                                    py$1192 + y$1195 - (s$1193[2] / 2 >> 0)),
+                                                                    s$1193[1],
+                                                                    s$1193[2],
+                                                                    _(color$1190, [ s$1193 ]),
+                                                                    ctx$1197
                                                                     ]);
                                                                     })
                                                                     ]);
@@ -7996,11 +8039,11 @@ var oc$Puzzle$ =
                                  })
                             ]);
                 });
-           _(Fda$1033[5], [ canvas$1091, _(shapes$1170, [ _f(function (s$1179) { return s$1179[3]; }) ]) ]);
+           _(Fda$1033[5], [ canvas$1091, _(shapes$1189, [ _f(function (s$1198) { return s$1198[3]; }) ]) ]);
            return __(Fda$1033[5],
                      [
                        click_canvas$1092,
-                       _(shapes$1170, [ _f(function (s$1180) { return __(Fda$1033[0], [ 0, s$1180[0], 0, 0 ]); }) ])
+                       _(shapes$1189, [ _f(function (s$1199) { return __(Fda$1033[0], [ 0, s$1199[0], 0, 0 ]); }) ])
                      ]);
          });
     (D$1030[0]).onload = onload$1088;
