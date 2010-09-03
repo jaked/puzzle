@@ -7715,6 +7715,7 @@ var oc$Puzzle$ =
                                                                     (function 
                                                                     (param$1471, e$1113) {
                                                                     var match$1472 = param$1471[0];
+                                                                    _m(e$1113.preventDefault, e$1113, [  ]);
                                                                     var t$1114 = oc$$arefs(e$1113.touches, 0);
                                                                     var x$27$1115 = t$1114.clientX;
                                                                     var y$27$1116 = t$1114.clientY;
@@ -7807,12 +7808,12 @@ var oc$Puzzle$ =
                        events$1130,
                        $(_(F$1031[33],
                            [
-                             _f(function (e$1135) { return $(-518001565, e$1135); }),
+                             _f(function (e$1135) { _m(e$1135.preventDefault, e$1135, [  ]); return $(-518001565, e$1135); }),
                              _(touchEvent$1069, [ "touchstart", canvas$1091 ])
                            ]),
                          $(_(F$1031[33],
                              [
-                               _f(function (e$1136) { return $(-640431716, e$1136); }),
+                               _f(function (e$1136) { _m(e$1136.preventDefault, e$1136, [  ]); return $(-640431716, e$1136); }),
                                _(touchEvent$1069, [ "touchend", canvas$1091 ])
                              ]), 0))
                      ]) :
