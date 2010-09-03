@@ -8,4 +8,4 @@ clean:
 	rm -f $(JS)
 
 github:
-	cp index.html $(JS) ../puzzle.gh-pages
+	cp index.html style.css $(JS) ../puzzle.gh-pages
